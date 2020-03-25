@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "future": "cpp",
+        "limits": "cpp",
+        "memory": "cpp",
+        "thread": "cpp",
+        "valarray": "cpp",
+        "array": "cpp",
+        "regex": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled",
+    "competitive-programming-helper.firstTime": false
+}
