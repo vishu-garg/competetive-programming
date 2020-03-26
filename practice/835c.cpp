@@ -43,38 +43,40 @@ int pow1(int a,int b){
         a=a*a;
         b>>=1;
     }
+    return res;
 }
+ll cnt[11][105][105];
+// cnt[0][0][0]=0;
+int main()
+{
+    ll n,q,c;
+    cin>>n>>q>>c;
+    rep(i,0,n)
+    {
+        ll x,y,s;
+        cin>>x>>y>>s;
+        cnt[s][x][y]++;
+    }
+    rep(i,0,c+1)
+    {
+        rep(x,1,101)
+        rep(y,1,101)
+        {
+            cnt[i][x][y]+=cnt[i][x-1][y]+cnt[i][x][y-1]-cnt[i][x-1][y-1];
+        }
+    }
 
-ll func(ll a,ll k){
-    ll x=(a/k);
-    x++;
-    return x;
-}
-
-int main(){
-    ll k,a,b;
-    ll ans=0;
-    cin>>k>>a>>b;
-    if(a==0)
+    rep(i,0,q)
     {
-      ans=func(b,k);
+        ll t,x1,y1,x2,y2;
+        cin>>t>>x1>>y1>>x2>>y2;
+        ll ans=0;
+        rep(i,0,c+1)
+        {
+           ll tmp=(i+t)%(c+1);
+           ll amnt=cnt[i][x2][y2]-cnt[i][x2][y1-1]-cnt[i][x1-1][y2]+cnt[i][x1-1][y1-1];
+           ans+=(amnt*tmp); 
+        }
+        cout<<ans<<endl;
     }
-    else if(b==0)
-    {
-        ans=func(-a,k);
-    }
-    else if(a>0 && b>0)
-    {
-        ans=func(b,k)-func(a-1,k);
-    }
-    else if(a<0 && b>0)
-    {
-        ans=func(-a,k)+func(b,k)-1;
-    }
-    else if(a<0 && b<0)
-    {
-        ans=func(-a,k)-func(-b-1,k);
-    }    
-    cout<<ans<<endl;    
-    return 0;    
 }
