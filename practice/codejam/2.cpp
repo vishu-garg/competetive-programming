@@ -49,10 +49,44 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
-    while(t--)
+   cin>>t;
+    for(ll cse=1;cse<=t;cse++)
     {
-        
+        string s;
+        cin>>s;
+        ll opn=0;
+        char k='0';
+        string ans="";
+        ll n=s.length();
+        rep(i,0,n)
+        {
+            if(s[i]-k==0)
+            {
+                ans+=s[i];
+                k=s[i];
+            }
+            else if(s[i]-k>0)
+            {
+                ll tmp=s[i]-k;
+                rep(i,0,tmp)
+                ans+='(';
+                ans+=s[i];
+                opn+=tmp;
+                k=s[i];
+            }
+            else if(s[i]-k<0)
+            {
+                ll tmp=abs(s[i]-k);
+                rep(i,0,tmp)
+                ans+=')';
+                ans+=s[i];
+                opn-=tmp;
+                k=s[i];
+            }
+        }
+        rep(i,0,opn)
+        ans+=')';
+        cout<<"Case #"<<cse<<": "<<ans<<endl;
     }
 
 }

@@ -49,10 +49,40 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        string s;
+        cin>>s;
+        string ans="";
+        while(s.length()!=0)
+        {
+            ll n=s.length();
+            if(n%2!=0)
+            {
+                ans=s[n-1]+ans;
+                s=s.substr(0,n-1);
+            }
+            else 
+            {
+                ll n=s.length();
+                ll tmp=n/2;
+                string st1=s.substr(0,tmp-1);
+                string st2=s.substr(tmp,tmp);
+                if(st1==st2)
+                {
+                    ans='*'+ans;
+                    s=st1;
+                }
+                else 
+                {
+                    ans=s[n-1]+ans;
+                    s=s.substr(0,n-1);
+                }
+            }
+            cout<<s<<" <---"<<endl;
+        }
+        cout<<ans<<endl;    
     }
 
 }

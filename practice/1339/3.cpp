@@ -49,10 +49,40 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+       ll n;
+       cin>>n;
+       ll a[n];
+       rep(i,0,n)
+       cin>>a[i];
+       if(n==1)
+       {
+           cout<<"0"<<endl;
+           continue;
+       }
+       ll b[n];
+       b[0]=a[0];
+       rep(i,1,n)
+       {
+           b[i]=max(a[i],b[i-1])
+       }
+       ll mn=1e18;
+       rep(i,1,n)
+       {
+           mn=min(a[i]-b[i-1],mn);
+       }
+       if(mn>=0)
+       {
+           cout<<"0"<<endl;
+           continue;
+       }
+       mn=abs(mn);
+       ll ans=0;
+       while((ll)pow(2,ans)-(1LL)<mn)
+       ans++;
+       cout<<ans<<endl;
     }
 
 }

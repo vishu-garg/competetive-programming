@@ -48,11 +48,20 @@ int pow1(int a,int b){
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
-    while(t--)
+    ll n;
+    cin>>n;
+    map<ll,ll> mp;
+    rep(i,0,n)
     {
-        
+        ll tmp;
+        cin>>tmp;
+        ll x=tmp-i;
+        mp[x]+=tmp;
     }
-
+    ll ans=0;
+    for(auto it:mp)
+    {
+        ans=max(ans,it.second);
+    }
+    cout<<ans;
 }

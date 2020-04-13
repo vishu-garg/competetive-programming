@@ -49,10 +49,41 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        map<ll,ll> mp;
+        ll p[n];
+        rep(i,0,n){cin>>p[i];mp[p[i]]++;}
+        ll tot=n/2;
+        vector<ll> v;
+        for(auto it : mp)
+        {
+            v.pb(it.second);
+        }
+        ll g=v[0];
+        ll i=1;
+        ll s=0;
+        while(s<=g && i<v.size())
+        s+=v[i++];
+        int ok=1;
+        if(g<s){
+            int b=0;
+            while(b<=g && i<=v.size())
+            b+=v[i++];
+            while(i<v.size() && g+s+b+v[i]<=n/2)
+            b+=v[i++];
+            if(g<b && g+b+s<=n/2)
+            {
+                ok=1;
+                cout<<g<<" "<<s<<" "<<b<<endl;
+                continue;
+            }
+        }
+        if(ok==0)
+        cout<<"0 0 0"<<endl;
     }
 
 }

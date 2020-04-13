@@ -48,11 +48,21 @@ int pow1(int a,int b){
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
+    ll t;
+    cin>>t;
     while(t--)
     {
-        
-    }
+        int a,b,c;
+        cin>>a>>b>>c;
+        ll ans=0;
+        if(a){ans++;a--;
+        if(b){ans++;b--;}
+        if(c){ans++;c--;}
+        if(a && b){ans++;a--;b--;}
+        if(a && c){ans++;a--;c--;}
+        if(b && c){ans++; b--; c--;}
+        if(a && b && c){ans++;a--;b--;c--;}
+        cout<<ans<<endl;
 
+    }
 }

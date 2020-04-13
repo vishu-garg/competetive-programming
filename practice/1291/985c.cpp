@@ -52,7 +52,45 @@ int main()
 //    cin>>t;
     while(t--)
     {
-        
+        ll n,k,l;
+        cin>>n>>k>>l;
+        ll sz=n*k;
+        V v(sz);
+        rep(i,0,sz)
+        cin>>v[i];
+        sort(all(v));
+        ll mn=v[0];
+        ll mx=v[sz-k];
+        ll ans=0;
+        ll tmp=l+mn+1;
+        tmp=lower_bound(all(v),tmp)-v.begin();
+        ll t2=sz-tmp;
+        if(k==1 && t2!=0)
+        {
+        	cout<<"0";
+        	return 0;
+		}
+        if(t2>(tmp*(k-1)))
+        {
+            cout<<"0";
+            return 0;
+        }
+        ll t3=n*k;
+        tmp--;
+        while(t2>=(k-1) && tmp>=0)
+        {
+            ans+=v[tmp];
+            tmp--;
+            t2-=(k-1);
+            t3-=k;
+        }
+        for(ll i=0;i<(t3);i+=k)
+        {
+            ans+=v[i];
+        }
+
+        cout<<ans<<endl;
+    return 0;
     }
 
 }

@@ -52,7 +52,29 @@ int main()
 //    cin>>t;
     while(t--)
     {
-        
+        ll n,k;
+        cin>>n>>k;
+        ll a[n];
+        rep(i,0,n)
+        cin>>a[i];
+        string s;
+        cin>>s;
+        ll ans=0;
+        for(ll i=0,j=0;i<n;i=j)
+        {
+            V v;
+            while(j<n && s[i]==s[j])
+            {
+                v.pb(a[j]);
+                j++;
+            }
+            sort(all(v));
+            reverse(v.begin(),v.end());
+            // cout<<min(k,j-i)<<endl;
+            rep(tmp,0,min(k,j-i))
+            ans+=v[tmp];
+        }
+        cout<<ans;
     }
 
 }

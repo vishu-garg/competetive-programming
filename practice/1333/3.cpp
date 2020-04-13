@@ -52,6 +52,39 @@ int main()
 //    cin>>t;
     while(t--)
     {
+    	ll n;
+        cin>>n;
+        ll a[n+1];
+        ll sum[n+1];
+        map<ll,ll> mp,next;
+        sum[0]=0;
+        mp[0]=0;
+        rep(i,1,n+1)
+        {
+        cin>>a[i];
+        sum[i]=sum[i-1]+a[i];
+        if(mp.find(sum[i])!=mp.end())
+        next[mp[sum[i]]+1]=i;
+        mp[sum[i]]=i;
+        }
+
+        ll min_i=n+1;
+        ll next_index[n+1];
+        repb(i,n,1)
+        {
+            next_index[i]=min_i;
+            if(next.find(i)!=next.end())
+            next_index[i]=min(next_index[i],next[i]);
+            min_i=next_index[i];
+        }
+        ll ans=0;
+        rep(i,1,n+1)
+        {
+            ll r=next_index[i];
+            ll l=i;
+            ans+=(r-l);
+        }
+        cout<<ans;
         
     }
 

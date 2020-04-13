@@ -49,10 +49,29 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll d,m;
+        cin>>d>>m;
+        ll v=0;
+        ll ans=1;
+        while((ll)pow(2,v)<=d)
+        {
+            ll tmp=min((ll)pow(2,v+1)-1ll,d);
+            tmp-=(ll)pow(2,v);
+            tmp+=2;
+//            cout<<v<<" "<<tmp<<"= <----"<<endl;
+            tmp=(tmp%m);
+			ans=(ans*tmp)%m;
+            v++;
+        }
+//        cout<<ans<<endl;
+        ans=((ans%m)-(1%m))%m;
+        if(ans<0)
+        ans=(ans+m)%m;
+//        ans%=m;
+        cout<<(ans)<<endl;
     }
 
 }

@@ -34,25 +34,45 @@ const ll M = 1000000007;
 const ll INF = 1e12;
 #define PI 3.14159265
 
-int pow1(int a,int b){
-    int res=1;
+ll pow1(ll a,ll b){
+    ll res=1;
+    a=(a%M);
     while(b>0){
         if(b&1){
-        	res=res*a;
+        	res=(res*a)%M;
 		}
-        a=a*a;
+        a=(a*a)%M;
         b>>=1;
     }
+    res%=M;
     return res;
 }
 
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll  n;
+        cin>>n;
+        ll lmt=cbrt(n);
+        for(ll i=2;i<=lmt;i++)
+        {
+            ll k=(ll)(log(n)/log(i));
+            ll tmp=pow1(i,k);
+            ans=(ans+tmp)%M;
+        }
+        ll of2=sqrt(n);
+        ll sum=((of2*(of2+1ll))*(2*of2+1ll))/6ll;
+        ll s2=((lmt*(lmt+1ll))*(2*lmt+1ll))/6ll;
+        sum-=s2;
+        sum%=M;
+        ans+=sum;
+        ans%=M;
+        ans+=n;
+        ans%=M;
+        cout<<ans<<endl;
     }
 
 }

@@ -45,14 +45,3 @@ int pow1(int a,int b){
     }
     return res;
 }
-
-int main()
-{
-    ll t=1;
-//    cin>>t;
-    while(t--)
-    {
-        
-    }
-
-}

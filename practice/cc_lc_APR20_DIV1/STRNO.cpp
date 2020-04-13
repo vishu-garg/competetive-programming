@@ -49,10 +49,29 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll x,k;
+        cin>>x>>k;
+        ll ans=0;
+        ll tmp=2;
+        ll sq=sqrt(x);
+        while(tmp<=sq)
+        {
+            while(x%tmp==0)
+            {
+                ans++;
+                x=(x/tmp);
+            }
+            tmp++;
+        }
+        if(x>=2)
+        ans++;
+        if(ans>=k)
+        cout<<"1"<<endl;
+        else 
+        cout<<"0"<<endl;
     }
 
 }

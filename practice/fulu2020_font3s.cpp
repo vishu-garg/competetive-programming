@@ -43,16 +43,22 @@ int pow1(int a,int b){
         a=a*a;
         b>>=1;
     }
-    return res;
 }
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
-    while(t--)
-    {
-        
-    }
-
+    int n;
+    string s[4];
+    s[0]="amtresmhhxew";
+    s[1]="montycerofx";
+    s[2]="windoshelvetica";
+    s[3]="elunorgreetings";
+    cin>>n;
+    cout<<s[n%4];
+    n=n<<1;
+    n+=3;
+    cout<<" "<<s[n%4]<<" ";
+    n=n>>1;
+    n+=3;
+    cout<<s[n%4];
 }

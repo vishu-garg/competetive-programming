@@ -45,14 +45,51 @@ int pow1(int a,int b){
     }
     return res;
 }
+ll n,l,r;
+V ans;
 
+void func(ll lf, ll rg , ll id)
+{
+    if(lf==rg)
+    return;
+    // cout<<min(id+2*(rg-lf),r)<<" "<<max(l,id);
+    if(min(id+2*(rg-lf),r)>max(l,id))
+    {
+        // cout<<"HERE "<<lf+1<<" "<<rg+1<<endl;
+        rep(i,lf+1,rg+1)
+        {
+            // cout<<id<<" "<<l<<" "<<r<<" <---"<<endl;
+            if(l<=id && id<r)
+            ans.pb(lf);
+            id++;
+            if(l<=id && id<r)
+            ans.pb(i);
+            id++;
+        }
+    }
+    else
+        id+=2*(rg-lf);
+    
+    func(lf+1,rg,id);
+}
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+    //    ll n,l,r;
+       cin>>n>>l>>r;
+       l--;
+       func(0,n-1,0);
+      if(r==n*(n-1)+1)
+      ans.pb(0);
+       for(auto it : ans)
+       cout<<it+1<<" ";
+       cout<<endl;
+       ans.clear();
     }
-
-}
+}  

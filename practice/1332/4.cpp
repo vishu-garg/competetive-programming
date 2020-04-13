@@ -52,7 +52,10 @@ int main()
 //    cin>>t;
     while(t--)
     {
-        
+        int k;
+        cin>>k;
+        cout<<"2 3";
+        cout<<(1<<17)+k<<" "<<(1<<17)<<" "<<0<<endl;
+        cout<<k<<" "<<(1<<17)+k<<" "<<k<<endl;
     }
-
 }

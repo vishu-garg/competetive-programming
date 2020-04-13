@@ -46,13 +46,70 @@ int pow1(int a,int b){
     return res;
 }
 
+V adj[100006];
+
+ll lev[100006];
+
+void dfs(ll i, ll prv , ll l)
+{
+    lev[i]=l;
+    for(auto j : adj[i])
+    {
+        // cout<<j<<" "<<prv<<" "<<l<<"<---"<<endl;
+        if(j!=prv)
+        dfs(j,i,l+1);
+    }
+}
+
 int main()
 {
     ll t=1;
 //    cin>>t;
     while(t--)
     {
+        ll n;
+        cin>>n;
+        rep(i,0,n-1)
+        {
+            ll u,v;
+            cin>>u>>v;
+            adj[u].pb(v);
+            adj[v].pb(u);
+        }
+        dfs(1,0,1);
         
+        ll fod=0,fev=0;
+        rep(i,1,n+1)
+        {
+            // cout<<i<<" "<<lev[i]<<endl;
+            if(adj[i].size()==1 && lev[i]%2==0)fev=1;
+            if(adj[i].size()==1 && lev[i]%2!=0)fod=1;
+        }
+        ll mi,mx;
+        if(fod==0 || fev==0)
+        {
+            mi=1;
+        }
+        else 
+        mi=3;  // since we cannt use zero otherwise 2;
+
+        mx=n-1;
+        rep(i,1,n+1)
+        {
+            ll cnt=0;
+            for(auto j : adj[i])
+            {
+                if(adj[j].size()==1)
+                cnt++;
+            }
+            if(cnt)
+            mx-=(cnt-1);
+        }
+        cout<<mi<<" "<<mx;
+
+
+
+
     }
 
 }

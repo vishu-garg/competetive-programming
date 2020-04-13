@@ -45,14 +45,54 @@ int pow1(int a,int b){
     }
     return res;
 }
+V a,dp,ans;
+vector<vector<ll> > g;
+void dfs(ll src, ll par)
+{
+    dp[src]=a[src];
+    for(auto it : g[src])
+    {
+        if(it==par)continue;
+        dfs(it,src);
+        dp[src]+=max((ll)0,dp[it]);
+    }
+}
+
+void dfs2(ll src , ll par)
+{
+    ans[src]=dp[src];
+    for(auto it:g[src])
+    {
+        if(it==par)continue;
+        dp[src]-=max((ll)0,dp[it]);
+        dp[it]+=max((ll)0,dp[src]);
+        dfs2(it,src);
+        dp[it]-=max((ll)0,dp[src]);
+        dp[src]+=max((ll)0,dp[it]);
+    }
+}
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
-    while(t--)
+    ll n;
+    cin>>n;
+    ans=dp=a=vector<ll>(n);
+    g=vector<vector<ll> >(n);
+    rep(i,0,n)
     {
-        
+        cin>>a[i];
+        if(a[i]==0)a[i]=-1;
     }
-
+    rep(i,0,n-1)
+    {
+        ll x,y;
+        cin>>x>>y;
+        x--;y--;
+        g[x].pb(y);
+        g[y].pb(x);
+    }
+    dfs(0,-1);
+    dfs2(0,-1);
+    rep(i,0,n)
+    cout<<ans[i]<<" ";
 }

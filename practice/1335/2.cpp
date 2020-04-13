@@ -49,10 +49,23 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n,a,b;
+        cin>>n>>a>>b;
+        string str;
+        map<char,ll> mp;
+        rep(i,0,b)
+        {
+            str+=('a'+i);
+            mp['a'+i]++;
+        }
+        rep(i,b,n)
+        {
+            str+=str[i-b];
+        }
+        cout<<str<<endl;
     }
 
 }

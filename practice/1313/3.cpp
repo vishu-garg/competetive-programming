@@ -48,11 +48,61 @@ int pow1(int a,int b){
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
-    while(t--)
+    ll n;
+    cin>>n;
+    V a(n);
+    rep(i,0,n)
     {
-        
+        cin>>a[i];
     }
+    V st;
+    vector<V> tmp;
+    pll p;
+    ll k=0;
+    for(ll i=0;i<n;i++)
+    {
+        vector<ll> ans(n);
+        ans[i]=a[i];
+        ll mn=a[i];
+        for(ll j=i-1;j>=0;j--)
+        {
+            if(a[j]<=mn)
+            {
+                ans[j]=a[j];
+                mn=a[j];
+            }
+            else 
+            ans[j]=mn;
+        }
+        mn=a[i];
+        for(ll j=i+1;j<n;j++)
+        {
+            if(a[j]<=mn)
+            {
+                ans[j]=a[j];
+                mn=a[j];
+            }
+            else 
+            ans[j]=mn;
+        }
+        ll sum=0;
+        rep(i,0,n)
+        {
+            sum+=ans[i];
+        }
+        if(k==0)
+        {
+            p=make_pair(sum,k);
+        }
+        else 
+        {
+            if(p.first<sum)
+            p=make_pair(sum,k);
+        }
+        tmp.pb(ans);
+        k++;
+    }
+    for(auto it : tmp[p.second])
+    cout<<it<<" ";
 
 }

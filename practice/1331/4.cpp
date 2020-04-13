@@ -52,7 +52,14 @@ int main()
 //    cin>>t;
     while(t--)
     {
-        
+        string s;
+        cin>>s;
+        int tmp=s[6]-'0';
+        if(tmp%2==0)
+        cout<<"0";
+        else 
+        cout<<"1";
     }
+
 
 }

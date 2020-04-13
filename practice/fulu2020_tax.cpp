@@ -48,11 +48,17 @@ int pow1(int a,int b){
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
-    while(t--)
-    {
-        
-    }
-
+    int p;
+    cin>>p;
+    int c=p%10;
+    p=p/10;
+    int b=p%10;
+    p/=10;
+    int a=p;
+    int ans=a^b;
+    ans=ans^c;
+    if(ans==0)
+    cout<<"Exclusive";
+    else 
+    cout<<"Inclusive";
 }

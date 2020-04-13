@@ -52,6 +52,31 @@ int main()
 //    cin>>t;
     while(t--)
     {
+        int n;
+        cin>>n;
+        vector<int> s(6);
+        rep(i,0,6)
+        {
+            if((n&1)==1)
+            s[i]=1;
+            else 
+            s[i]=0;
+            n=n>>1;
+        }
+        int ans=0;
+        if(s[0]==1)
+        ans+=16;
+        if(s[1]==1)
+        ans+=2;
+        if(s[2]==1)
+        ans+=8;
+        if(s[3]==1)
+        ans+=4;
+        if(s[4]==1)
+        ans+=1;
+        if(s[5]==1)
+        ans+=32;
+        cout<<ans;
         
     }
 

@@ -46,12 +46,56 @@ int pow1(int a,int b){
     return res;
 }
 
+void SieveOfEratosthenes(int n) 
+{ 
+    // Create a boolean array "prime[0..n]" and initialize 
+    // all entries it as true. A value in prime[i] will 
+    // finally be false if i is Not a prime, else true. 
+    bool prime[1001]; 
+    memset(prime, true, sizeof(prime)); 
+  
+    for (int p=2; p*p<=n; p++) 
+    { 
+        // If prime[p] is not changed, then it is a prime 
+        if (prime[p] == true) 
+        { 
+            // Update all multiples of p greater than or  
+            // equal to the square of it 
+            // numbers which are multiple of p and are 
+            // less than p^2 are already been marked.  
+            for (int i=p*p; i<=n; i += p) 
+                prime[i] = false; 
+        } 
+    }
+
+    for(int p=2;p<=n;p++)
+    {
+        if(prime[p])
+        v[p]=1;
+        else 
+        v[p]=0;
+    }
+    v[1]=0;
+} 
+
 int main()
 {
     ll t=1;
 //    cin>>t;
     while(t--)
     {
+        int n;
+        cin>>n;
+        SieveOfEratosthenes(1000);
+        rep(i=1;i<=1000;i++)
+        {
+            if(v[i]==1)
+            {
+                if(n%i==0 && v[n/i]==1)
+                cout<<i<<(n/i);
+                return 0;
+            }
+        }
         
     }
 

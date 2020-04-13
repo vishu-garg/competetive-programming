@@ -49,10 +49,29 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        cin>>n;
+        ll a[n];
+        rep(i,0,n)
+        cin>>a[i];
+        sort(a,a+n);
+        V ans;
+        ll tmp=n/2;
+        if(n%2!=0)
+        ans.pb(a[tmp]);
+        while(tmp>0)
+        {
+            ans.pb(a[tmp-1]);
+            ans.pb(a[n-tmp]);
+            tmp--;
+
+        }
+        rep(i,0,n)
+        cout<<ans[i]<<" ";
+        cout<<endl;
+
     }
 
 }

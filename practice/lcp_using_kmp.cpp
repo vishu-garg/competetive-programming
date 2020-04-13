@@ -49,10 +49,36 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+    cin>>t;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        string str[n];
+        rep(i,0,n)cin>>str[i];
+        string ans=str[0];
+        rep(i,1,n)
+        {
+            string tmp=ans;
+            tmp+="#";
+            tmp+=str[i];
+            ll pref[(ll)tmp.length()];
+            pref[0]=0;
+            rep(i,1,tmp.length())
+            {
+                ll j=pref[i-1];
+                while(j>0 && s[i]!=s[j])
+                j=pref[j-1];
+                if(s[i]==s[j])
+                j++;
+                pref[i]=j;
+            }
+            ll mx=0;
+            rep(i,0,tmp.length())
+            mx=max(mx,pref[i]);
+            ans=ans.substr(0,mx);
+        }
+        cout<<ans<<endl;
     }
 
 }

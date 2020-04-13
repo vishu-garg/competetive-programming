@@ -49,10 +49,43 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
+   ll cse=1;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        ll mat[n][n];
+        ll r=0,c=0,tr=0;
+        rep(i,0,n)
+        {
+            set<ll> s;
+            ll flag=0;
+            rep(j,0,n)
+            {
+                cin>>mat[i][j];
+                if(i==j)
+                tr+=mat[i][j];
+                if(find(s.begin(),s.end(),mat[i][j])!=s.end() && flag==0)
+                {r++;flag=1;}
+                else
+                s.insert(mat[i][j]);
+            }
+            s.clear();
+        }
+        rep(i,0,n)
+        {
+            set<ll> s;
+            ll flag=0;
+            rep(j,0,n)
+            {
+                if(find(s.begin(),s.end(),mat[j][i])!=s.end() && flag==0)
+                {c++;flag=1;}
+                else
+                s.insert(mat[j][i]);
+            }
+        }
+        cout<<"Case #"<<cse<<": "<<tr<<" "<<r<<" "<<c<<endl;cse++;
     }
 
 }

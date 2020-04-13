@@ -49,10 +49,37 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        int a,b,n;
+        cin>>a>>b>>n;
+        vector<int> c(n);
+        rep(i,0,n)
+        cin>>c[i];
+        ll lo=*max_element(all(c));
+        ll hi=accumulate(all(c),0);
+        while(lo<=hi)
+        {
+            ll mid=(lo+hi)/2;
+            ll req=1,load=0;
+            for(int i=0;i<n;i++)
+            {
+                if(load+c[i]<=mid)
+                load+=c[i];
+                else 
+                {
+                    req++;
+                    load=c[i];
+                }
+            }
+
+            if(req<=a)
+            hi=mid-1;
+            else 
+            lo=mid+1;
+        }
+        cout<<lo<<endl;
     }
 
 }

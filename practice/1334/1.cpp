@@ -49,10 +49,36 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        ll p[n],c[n];
+        rep(i,0,n)
+        cin>>p[i]>>c[i];
+        ll t1=0,t2=0;
+        ll fl=0;
+        rep(i,0,n)
+        {
+            ll tp=p[i]-t1;
+            ll tc=c[i]-t2;
+            if(tp<0 || tc<0 || tp<tc)
+            {
+                fl=1;
+                break;
+            }
+            t1=p[i];
+            t2=c[i];
+        }
+        if(fl==1)
+        {
+            cout<<"NO"<<endl;
+        }       
+        else 
+        cout<<"YES"<<endl;
+
+
     }
 
 }

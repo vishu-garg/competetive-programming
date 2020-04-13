@@ -49,10 +49,36 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        ll a[n];
+        set<ll> s;
+        rep(i,0,n)
+        {
+            cin>>a[i];
+            s.insert(a[i]);
+            mp[a[i]]++;
+        }
+        ll ans=0;
+        if(n<2)
+        {
+            cout<<"0"<<endl;
+            continue;
+        }
+        ll mx=0;
+        for(auto it : s)
+        {
+            mx=max(mx,mp[it]);
+        }
+        ll dst=s.size();
+        ll ans=min(dst-1,mx);
+        ans=max(ans,min(dst,mx-1));
+        ans=max(1ll,ans);
+        cout<<ans<<endl;
+
     }
 
 }

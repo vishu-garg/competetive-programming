@@ -49,10 +49,52 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
-    while(t--)
+   cin>>t;
+    for(ll cse =1;cse<=t;cse++)
     {
-        
+       ll n;
+       cin>>n;
+       vector<pair<pll,ll> >v(n);
+        rep(i,0,n)
+        {
+            ll si,ei;
+            cin>>si>>ei;
+            // cin>>si>>ei;
+            v[i]=make_pair(make_pair(si,ei),i);
+        }
+        sort(v.begin(),v.end());
+        ll c=0,j=0;
+        vector<char>ans(n);
+        ll flag=0;
+        for(auto it : v)
+        {
+            // cout<<it.first.first<<" "<<it.first.second<<" , "<<it.second<<" ";
+            if(it.first.first>=c)
+            {
+                ans[it.second]='C';
+                c=it.first.second;
+            }
+            else if(it.first.first>=j)
+            {
+                ans[it.second]='J';
+                j=it.first.second;
+            }
+            else 
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+        {
+            cout<<"Case #"<<cse<<": IMPOSSIBLE"<<endl;
+            continue;
+        }
+        cout<<"Case #"<<cse<<": ";
+        rep(i,0,n)
+        cout<<ans[i];
+        cout<<endl;
+
     }
 
 }

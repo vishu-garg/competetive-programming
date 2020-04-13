@@ -11,7 +11,8 @@
         "thread": "cpp",
         "valarray": "cpp",
         "array": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "competitive-programming-helper.firstTime": false

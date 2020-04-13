@@ -49,10 +49,58 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        vector<ll> a(n);
+        rep(i,0,n)
+        {
+            cin>>a[i];
+            // if(a[i]%4==0)
+            // a0.pb(i);
+            // if(a[i]%4==2)
+            // a2.pb(i);
+            a[i]%=4;
+        }
+        ll c4=-1,c2=-1,ans[n];
+        repb(i,n-1,0)
+        {
+            if(a[i]%4==0)
+            {ans[i]=(n-i);c4=i;}
+            else if(a[i]%4==2)
+            {
+                if(c2!=-1 && c4!=-1)
+                {
+                    ll tmp=min(c2,c4);
+                    ans[i]=n-tmp;
+                }
+                else if(c2!=-1)
+                {
+                    ans[i]=n-c2;
+
+                }
+                else if(c4!=-1)
+                {
+                    ans[i]=n-c4;
+                }
+                else 
+                {
+                    ans[i]=0;
+                }
+            }
+            else 
+            {
+                if(i==n-1)
+                ans[i]=1;
+                else 
+                ans[i]=1+ans[i+1];
+            }
+        }
+        ll sum=0;
+        rep(i,0,n)sum+=ans[i];
+        cout<<sum<<endl;
     }
 
 }

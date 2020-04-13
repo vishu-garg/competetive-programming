@@ -49,9 +49,46 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
+       ll n;
+       cin>>n;
+       V v(n);
+       set<ll> s;
+       map<ll,V> mp;
+       rep(i,0,n)
+       {cin>>v[i];s.insert(v[i]);mp[v[i]].pb(i);}
+       ll ans=0;
+       for(auto it : s)
+       {
+           V ind=mp[it];
+           ll tmp=ind.size();
+           ll cnt=0;
+           ll m2=tmp;
+           ll mx=tmp/2;
+           rep(i,0,mx)
+           {
+               ll ans2=(2*(i+1));
+               map<ll,ll> mp2;
+               rep(j,ind[i],ind[m2-i-1])
+               {
+                   if(v[j]!=it)
+                   mp2[v[j]]++;
+                }
+                ll m3=0;
+                for(auto it2 : mp2)
+                {
+                    m3=max(m3,it2.second);
+                }
+                ans2+=m3;
+                tmp=max(tmp,ans2);
+           }
+            
+            ans=max(ans,tmp);
+       }
+       cout<<ans<<endl;
+
         
     }
 

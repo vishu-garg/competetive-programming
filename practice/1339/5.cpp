@@ -49,10 +49,51 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+       ll n;
+       cin>>n;
+       ll x=0;
+       while((ll)pow(4,x)<=n)
+       x++;
+       ll bit=2*x;
+       ll tot=(ll)pow(4,x)-(ll)pow(4,x-1);
+       ll cur=n-(ll)pow(4,x-1)+1;
+       ll a1=0,a2=0,a3=0;
+       
+       a1=1ll<<(bit-2);a2=1ll<<(bit-1);a3=a1^a2;
+       bit-=2;
+       while(bit>0)
+       {
+           ll tmp=0;
+           tot/=4;
+           while(tot*tmp<cur)
+           tmp++;
+           if(tmp==2)
+           {
+               a1+=(1ll<<bit-2);
+               a2+=(1ll<<bit-1);
+               a3=a1^a2;
+           }
+           else if(tmp==3)
+           {
+               a1+=(1ll<<bit-1);
+               a2+=((1ll<<bit-1)+(1ll<<bit-2));
+               a3=a1^a2;
+           }
+           else if(tmp==4)
+           {
+               a1+=((1ll<<bit-1)+(1ll<<bit-2));
+               a2+=(1ll<<bit-2);
+               a3=a1^a2;
+           }
+           bit-=2;
+           cur=cur-(tot*(tmp-1));
+        }
+        if(n%3==1)cout<<a1<<endl;
+        else if(n%3==2)cout<<a2<<endl;
+        else cout<<a3<<endl;
     }
 
 }

@@ -52,6 +52,48 @@ int main()
 //    cin>>t;
     while(t--)
     {
+        ll n,m;
+        cin>>n>>m;
+        vector<ll> v(m);
+        ll mx=0;
+        rep(i,0,m)
+        {
+            ll tmp;cin>>tmp;
+            v[i]=tmp;
+            mx+=tmp;
+            if(i+v[i]>n)
+            {
+            	cout<<"-1";
+            	return 0;
+			}
+        }
+        if(mx<n)
+        {
+            cout<<"-1";
+            return 0;
+        }
+        ll it2=*min_element(v.begin(),v.end());
+        
+        if(it2+m-1>n)
+        {
+            cout<<"-1";
+            return 0;
+        }
+        // ll lst=it2;
+        
+        vector<ll>ans(m);
+        ll sum=0;
+        for(ll i=m-1;i>=0;i--)
+        {
+            sum+=v[i];
+            if(sum+i<n)
+            ans[i]=(n-sum+1);
+            else 
+            ans[i]=(i+1);
+        }
+        rep(i,0,m)
+        cout<<ans[i]<<" ";
+        
         
     }
 

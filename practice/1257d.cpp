@@ -49,10 +49,57 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll  n;
+        cin>>n;
+        V a(n);
+        rep(i,0,n)
+        cin>>a[i];
+        ll m;
+        cin>>m;
+        V b(n+1,0);
+        rep(i,0,m)
+        {
+            ll p,end;
+            cin>>p>>end;
+            if(b[end]<p)
+            b[end]=p;
+        }
+        repb(i,n-1,0)
+        b[i]=max(b[i],b[i+1]);
+        ll cnt=0;
+        ll pos=0;
+        ll flg=0;
+        // rep(i,0,n+1)
+        // cout<<b[i]<<" ";
+        while(pos<n)
+        {
+            cnt++;
+            ll npos=pos;
+            ll mx=0;
+            while(npos<n){
+                mx=max(mx,a[npos]);
+                if(mx>b[npos-pos+1])
+                break;
+                npos++;
+                // cout<<cnt<<" "<<npos-1<<endl;
+            }
+            // cout<<pos<<" "<<npos<<"<---"<<endl;
+            if(pos==npos)
+            {
+                flg=1;
+                break;
+            }
+            pos=npos;
+        }
+
+        if(flg==1)
+        cnt=-1;
+        cout<<cnt<<endl;
+
+
     }
 
 }

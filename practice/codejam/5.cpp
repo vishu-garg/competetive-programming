@@ -49,10 +49,50 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
-    while(t--)
+   cin>>t;
+    for(ll cse=1;cse<=t;cse++)
     {
-        
+        cout<<"Case #"<<cse<<": ";
+        ll n,k;
+        cin>>n>>k;
+        ll flag=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(i*n==k)
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0)
+        {
+            cout<<"IMPOSSIBLE"<<endl;
+            continue;
+        }
+        cout<<"POSSIBLE"<<endl;
+        ll tr=k/n;
+        vector<ll> v;
+        rep(i,1,n+1)
+        {
+            if(i==tr)
+            continue;
+            v.pb(i);
+        }
+        ll mat[n][n];
+        rep(row,0,n)
+        {
+        rep(c,0,n)
+        {
+            if(r==c)
+            mat[r][c]=tr;
+            else if(r>c)
+            mat[r][c]=v[v.size()+c-r];
+            else 
+            mat[r][c]=v[c-r];
+            cout<<mat[r][c]<<" ";
+        }
+        cout<<endl;
+        }
     }
 
 }

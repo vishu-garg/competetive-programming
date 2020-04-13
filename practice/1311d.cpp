@@ -49,10 +49,32 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+    cin>>t;
     while(t--)
     {
-        
+        ll a,b,c;
+        cin>>a>>b>>c;
+        ll ans=1e9;
+        ll A=-1,B=-1,C=-1;
+        for(ll i=1;i<(2*a);i++)
+        {
+            for(ll j=i;j<(2*b);j+=i)
+            {
+                for(ll k=0;k<2;k++)
+                {
+                    ll z=j*(c/j)+k*j;
+                    ll res=abs(a-i)+abs(b-j)+abs(c-z);
+                    if(ans>res){
+                        ans=res;
+                        A=i;
+                        B=j;
+                        C=z;
+                    }
+                }
+            }
+        }
+        cout<<ans<<endl;
+        cout<<A<<" "<<B<<" "<<C<<endl;
     }
 
 }

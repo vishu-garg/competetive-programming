@@ -45,6 +45,31 @@ int pow1(int a,int b){
     }
     return res;
 }
+ll n,m,k;
+V s;
+vector<vector<ll> >g;
+V vis;
+ll dist_1[200005],dist_n[200005],q[200005];
+
+void bfs(ll* dist_1,ll s)
+{
+    fill(dist_1,dist_1+n,INF);
+    ll qh=0,qt=0;
+    q[qh++]=s;
+    dist_1[s]=0;
+    while(qt<qh)
+    {
+        ll x=q[qt++];
+        for(ll y : g[x]){
+            if(dist_1[y]==INF)
+            {
+                dist_1[y]=dist_1[x]+1;
+                q[qh++]=y;
+            }
+        }
+    }
+}
+
 
 int main()
 {
@@ -52,7 +77,36 @@ int main()
 //    cin>>t;
     while(t--)
     {
-        
+        cin>>n>>m>>k;
+        s=V(k);
+        vis=V(n);
+        g=vector<vector<ll> >(n);
+        rep(i,0,k)
+        {cin>>s[i];s[i]-=1;}
+        rep(i,0,m)
+        {
+            ll x,y;
+            cin>>x>>y;
+            x--;y--;
+            g[x].pb(y);
+            g[y].pb(x);
+        }
+        V x(k);
+        bfs(dist_1,0);
+        bfs(dist_n,n-1);
+        vector<pair<ll,ll> >data;
+        rep(i,0,k)
+        {
+            data.pb({dist_1[s[i]]-dist_n[s[i]],s[i]});
+        }
+        sort(data.begin(),data.end());
+        ll best=0;
+        ll mx=-INF;
+        for(auto it : data){
+            ll a=it.second;
+            best=max(best,mx+dist_n[a]);
+            mx=max(mx,dist_1[a]);
+        }
+        cout<<min(dist_1[n-1],best+1);
     }
-
 }

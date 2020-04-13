@@ -43,16 +43,18 @@ int pow1(int a,int b){
         a=a*a;
         b>>=1;
     }
-    return res;
 }
 
 int main()
 {
-    ll t=1;
-//    cin>>t;
-    while(t--)
+    int n;
+    cin>>n;
+    int ans=0;
+    while(n>0)
     {
-        
+        int tmp=(n&1);
+        ans+=tmp;
+        n=(n>>1);
     }
-
+    cout<<ans;
 }

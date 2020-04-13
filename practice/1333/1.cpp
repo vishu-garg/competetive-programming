@@ -49,10 +49,24 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n,m;
+        cin>>n>>m;
+        lchar mat[n][m];
+        rep(i,0,n)
+        rep(j,0,m)
+        {
+            mat[i][j]='B';
+        }
+        mat[0][0]='W';
+        rep(i,0,n)
+        rep(j,0,m)
+        {{
+            cout<<mat[i][j];
+        }
+        cout<<endl;}
     }
 
 }
