@@ -12,8 +12,21 @@
         "valarray": "cpp",
         "array": "cpp",
         "regex": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "vector": "cpp",
+        "map": "cpp",
+        "iomanip": "cpp",
+        "set": "cpp",
+        "cmath": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "forward_list": "cpp",
+        "iosfwd": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.errorSquiggles": "Enabled",
     "competitive-programming-helper.firstTime": false
 }

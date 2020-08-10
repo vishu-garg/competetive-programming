@@ -46,13 +46,47 @@ int pow1(int a,int b){
     return res;
 }
 
+void solve(ll cse)
+{
+    int n;
+    cin>>n;
+    cout<<"Case #"<<cse<<": "<<endl;
+    if(n<30)
+    {
+        rep(i,0,n)
+        cout<<i+1<<" 1"<<endl;
+        return;
+    }
+    n-=30;
+    int m=0;
+    bool left=1;
+    rep(i,0,30)
+    {
+        cout<<i+1<<" "<<(left?1:i+1)<<endl;
+        if(n>>i&1)
+        {
+            if(left)
+            for(int j=1;j<=i;j++)
+            cout<<i+1<<" "<<j+1<<endl;
+            else 
+            for(int j=i-1;j>=0;j--)
+            cout<<i+1<<" "<<j+1<<endl;
+            left=!left;
+            m++;
+        }
+    }
+    for(int i=30;m;m--,i++){
+        cout<<i+1<<" "<<(left?1:i+1)<<endl;
+    }
+}
+
 int main()
 {
     ll t=1;
-//    cin>>t;
-    while(t--)
+   cin>>t;
+    for(ll i=1;i<=t;i++)
     {
-        
+        solve(i);
     }
 
 }

@@ -33,3 +33,47 @@ const ll logN = 20;
 const ll M = 1000000007;
 const ll INF = 1e12;
 #define PI 3.14159265
+
+int main()
+{
+    string s;
+    cin>>s;
+    ll n=s.length();
+    ll a[n+1][26];
+    rep(i,0,26)a[0][i]=0;
+    map<char,ll>mp;
+    rep(i,1,n+1)
+    {
+        mp[s[i-1]]++;
+        rep(j,0,26)
+        {
+        	a[i][j]=mp['a'+j];
+		}
+    }
+    ll q;
+    cin>>q;
+//    a[0]=0;
+    rep(i,0,q)
+    {
+    	ll l,r;
+        cin>>l>>r;
+//        l--;r--;
+        if(s[r-1]!=s[l-1] || l==r)
+        cout<<"Yes"<<endl;
+        else 
+        {
+        	ll dis=0;
+        	rep(j,0,26)
+        	{
+        		if(a[r][j]>a[l][j])dis++;
+			}
+			if(dis>=3)
+			{
+				cout<<"Yes"<<endl;
+			}
+			else 
+			cout<<"No"<<endl;
+		}
+//        cout<<"No"<<endl;
+    }
+}

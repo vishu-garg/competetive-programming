@@ -34,6 +34,7 @@ const ll M = 1000000007;
 const ll INF = 1e12;
 #define PI 3.14159265
 
+
 int main()
 {
     ll t;
@@ -45,33 +46,18 @@ int main()
         vector<ll> v(n);
         rep(i,0,n)
         cin>>v[i];
-        while(k>0 && m>0)
+        ll ans=0;
+        k=min(k,m-1);
+        for(ll i=0;i<=k;i++)
         {
-            if(m==1)
+            ll min_we_get=LLONG_MAX;
+            for(ll j=0;j<=(m-1-k);j++)
             {
-                cout<<max(*v.begin(),*v.rbegin());
+                ll tmp=max(v[i+j],v[i+j+n-m]);
+                min_we_get=min(tmp,min_we_get);
             }
-            else
-            {
-                if(*v.begin()>*(v.rbegin()))
-                v.erase(v.rbegin());
-                else 
-                v.erase(v.begin());
-            }
-            k--;m--;
+            ans=max(ans,min_we_get);
         }
-        if(m!=0)
-        {
-            while(m!=1)
-            {
-                if(*v.begin()<*(v.rbegin()))
-                v.erase(v.rbegin());
-                else 
-                v.erase(v.begin());
-            m--;
-            }
-        cout<<max(*v.begin(),*v.rbegin());
-        }
-        cout<<endl;
+        cout<<ans<<endl;
     }
 }

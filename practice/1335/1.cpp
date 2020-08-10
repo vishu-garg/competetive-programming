@@ -49,10 +49,17 @@ int pow1(int a,int b){
 int main()
 {
     ll t=1;
-//    cin>>t;
+   cin>>t;
     while(t--)
     {
-        
+        ll n;
+        cin>>n;
+        ll ans;
+        if(n%2==0)
+        ans=(n-1)/2-1;
+        else 
+        ans=n/2;
+        cout<<ans<<endl;
     }
 
 }

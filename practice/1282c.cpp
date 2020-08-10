@@ -1,75 +1,105 @@
 #include<bits/stdc++.h>
+#include<algorithm>
 using namespace std;
+ 
 #define ll long long
+#define ld long double
+ 
+#define rep(i,a,b) for(ll i=a;i<b;i++)
+#define repb(i,a,b) for(ll i=a;i>=b;i--)
+ 
+#define err() cout<<"=================================="<<endl;
+#define errA(A) for(auto i:A)   cout<<i<<" ";cout<<endl;
+#define err1(a) cout<<#a<<" "<<a<<endl
+#define err2(a,b) cout<<#a<<" "<<a<<" "<<#b<<" "<<b<<endl
+#define err3(a,b,c) cout<<#a<<" "<<a<<" "<<#b<<" "<<b<<" "<<#c<<" "<<c<<endl
+#define err4(a,b,c,d) cout<<#a<<" "<<a<<" "<<#b<<" "<<b<<" "<<#c<<" "<<c<<" "<<#d<<" "<<d<<endl
+ 
+#define pb push_back
+#define all(A)  A.begin(),A.end()
+#define allr(A)    A.rbegin(),A.rend()
+#define ft first
+#define sd second
+ 
+#define pll pair<ll,ll>
+#define V vector<ll>
+#define S set<ll>
+#define VV vector<V>
+#define Vpll vector<pll>
+ 
+#define endl "\n"
+ 
+const ll logN = 20;
+const ll M = 1000000007;
+const ll INF = 1e12;
+#define PI 3.14159265
+
+int pow1(int a,int b){
+    int res=1;
+    while(b>0){
+        if(b&1){
+        	res=res*a;
+		}
+        a=a*a;
+        b>>=1;
+    }
+    return res;
+}
+
 int main()
 {
-    ll t;
-    cin>>t;
-    while(t--)
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+    ll t1=1;
+     cin>>t1;
+    while(t1--)
     {
-        ll n,T,a,b;
-        cin>>n>>T>>a>>b;
-        ll lev[n];
-        for(ll i=0;i<n;i++)
-        cin>>lev[i];
-        ll t[n];
-        for(ll i=0;i<n;i++)
-        cin>>t[i];
-        vector<pair<ll, ll> > v(n);
-        for(ll i=0;i<n;i++)
-        v[i]=make_pair(t[i],lev[i]);
-        sort(v.begin(),v.end());
-        if(v[0].second==0)
-        v[0].second=a;
-        else
-        v[0].second=b;
-        for(ll i= 1;i<n;i++)
-        {
-            if(v[i].second==0)
-            v[i].second=a+v[i-1].second;
-            else
-            v[i].second=b+v[i-1].second;
-        }
-        ll ans=0,ext,scr=0;
-        if(v[n-1].second<=T)
-        cout<<n<<"\n";
-        else if(v[0].second>T){
-        ll scr2=(v[0].first-1)/a;
-                if (scr2<0) {cout<<0<<endl;}
-                else 
-                cout<<scr2<<endl;}
-        else
-        {
-            ll i=n-1;
-            while(ans!=1)
-            {
-            while(v[i].second>T)
-            i--;
-
-            if(v[i+1].first<=v[i].second)
-            {
-                if(i==0){
-                ll scr3=(v[i].first-1)/a;
-                if (scr3<0) {cout<<0<<endl;}
-                else
-                cout<<scr3<<endl;
-                ans=1;
-                }
-                else
-                {
-                    T=v[i+1].first - 1;
-                }
-            }
-            else
-            {
-                if(i+1<0)
-                cout<<"0"<<"\n";
-                else
-                cout<<i+1<<endl;
-                ans=1;
-            }
-            }
-        }
+        ll n,t,a,b;
+        cin>>n>>t>>a>>b;
         
+        ll s_tme[n];
+        ll dif[n];
+        
+        ll cnt0=0,cnt1=0;
+        
+        rep(i,0,n)
+        {
+        cin>>dif[i];
+        if(dif[i])
+        cnt1++;
+        else 
+        cnt0++;
+        }
+        rep(i,0,n)
+        cin>>s_tme[i];
+        
+        vector<pair<ll,ll> >v;
+        rep(i,0,n)
+        v.pb(make_pair(s_tme[i],dif[i]));
+        sort(v.begin(),v.end());
+        v.pb({t+1,0});
+        ll cnt3=0,cnt4=0;
+        ll ans=0;
+        for(ll i=0;i<=n;i++)
+        {
+            ll need=cnt3*a+cnt4*b;
+            ll has=v[i].first-1-need;
+            if(has>=0){
+                ll canA=min((cnt0-cnt3),has/a);
+                has-=canA*a;
+                ll canB=min((cnt1-cnt4),has/b);
+                ans=max(ans,cnt3+cnt4+canA+canB);
+            }
+            ll l=i;
+            while(l<v.size() && v[l].first==v[i].first){
+                if(v[l].second==1)
+                cnt4++;
+                else 
+                cnt3++;
+                l++;
+            }
+            i=l-1; // l-1 because i will be insreased above by updation due i++ in for loop so  next time we get i=l in the loop;
+        }
+        cout<<ans<<endl;
     }
 }
